@@ -6,11 +6,13 @@ function UpdateZabbix6(){
         sudo service zabbix-agent stop
         sudo rpm -Uvh http://webserver/repository/zabbix-agent-xxxxxx.el6.x86_64.rpm
         sudo service zabbix-agent start
+        sudo chkconfig zabbix-agent on
 }
 function UpdateZabbix7(){
         sudo systemctl stop zabbix-agent
         sudo rpm -Uvh http://webserver/repository/zabbix-agent-xxxxxxx.el7.x86_64.rpm
         sudo systemctl start zabbix-agent
+        sudo systemctl enable zabbix-agent
 }
 echo -e "${RED}Checking OS version...\n"; sleep 2
 if grep -q -i "release 6" /etc/redhat-release; then
